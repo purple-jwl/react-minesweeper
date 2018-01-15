@@ -3,13 +3,13 @@ import Board from './Board';
 
 export default class App extends React.Component {
     render() {
-        const height = 9;
-        const width = 9;
+        const rows = 9;
+        const columns = 9;
 
         return (
             <Board
-                height={height}
-                width={width}
+                rows={rows}
+                columns={columns}
             />
         );
     }
