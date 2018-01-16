@@ -11,9 +11,11 @@ export default class Board extends React.Component {
                     key={j}
                     y={i}
                     x={j}
-                    board={this.props.board}
                     rows={this.props.rows}
                     columns={this.props.columns}
+                    board={this.props.board}
+                    isOpened={this.props.isOpened}
+                    isFlagged={this.props.isFlagged}
                     onLeftClick={this.props.onLeftClick}
                     onRightClick={this.props.onRightClick}
                 />
