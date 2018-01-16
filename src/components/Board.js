@@ -11,6 +11,7 @@ export default class Board extends React.Component {
                     key={j}
                     y={i}
                     x={j}
+                    mineNumber={this.props.mineNumber}
                     rows={this.props.rows}
                     columns={this.props.columns}
                     board={this.props.board}
