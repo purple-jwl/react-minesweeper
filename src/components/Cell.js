@@ -21,13 +21,19 @@ export default class Cell extends React.Component {
             textAlign: 'center',
         };
 
+        const y = this.props.y;
+        const x = this.props.x;
+        const board = this.props.board;
+
         return (
             <div
                 style={style}
                 onClick={this._handleLeftClick}
                 onContextMenu={this._handleRightClick}
             >
-                {this.props.board[this.props.y][this.props.x]}
+                {board[y][x] === this.props.mineNumber ? '💣' : (
+                    board[y][x] === 0 ? '' : board[y][x]
+                )}
             </div>
         );
     }
