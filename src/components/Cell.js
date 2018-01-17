@@ -12,18 +12,20 @@ export default class Cell extends React.Component {
     };
 
     render() {
+        const y = this.props.y;
+        const x = this.props.x;
+        const board = this.props.board[y][x];
+        const isOpened = this.props.isOpened[y][x];
+        const isFlagged = this.props.isFlagged[y][x];
+
         const style = {
             height: '32px',
             width: '32px',
             border: '1px solid black',
             margin: '2px',
-            backgroundColor: 'lightyellow',
+            backgroundColor: isOpened ? 'white' : 'lightyellow',
             textAlign: 'center',
         };
-
-        const y = this.props.y;
-        const x = this.props.x;
-        const board = this.props.board;
 
         return (
             <div
@@ -31,8 +33,12 @@ export default class Cell extends React.Component {
                 onClick={this._handleLeftClick}
                 onContextMenu={this._handleRightClick}
             >
-                {board[y][x] === this.props.mineNumber ? '💣' : (
-                    board[y][x] === 0 ? '' : board[y][x]
+                {isFlagged ? '🚩' : (
+                    !isOpened ? '' : (
+                        board === this.props.mineNumber ? '💣' : (
+                            board === 0 ? '' : board
+                        )
+                    )
                 )}
             </div>
         );

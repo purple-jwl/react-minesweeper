@@ -32,10 +32,24 @@ export default class App extends React.Component {
 
             this._init(x, y);
         }
+
+        if (this.state.isOpened[y][x] || this.state.isFlagged[y][x]) {
+            return;
+        }
+
+        const isOpened = this.state.isOpened.slice();
+        isOpened[y][x] = true;
+        this.setState({isOpened});
     };
 
     handleRightClick = (x, y) => {
+        if (this.state.isOpened[y][x]) {
+            return;
+        }
 
+        const isFlagged = this.state.isFlagged.slice();
+        isFlagged[y][x] = !isFlagged[y][x];
+        this.setState({isFlagged});
     };
 
     _init = (sx, sy) => {
