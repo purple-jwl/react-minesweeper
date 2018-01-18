@@ -26,29 +26,51 @@ export default class App extends React.Component {
         };
     }
 
-    handleLeftClick = (x, y) => {
+    handleLeftClick = (cx, cy) => {
         if (this.isFirstOpen) {
             this.isFirstOpen = false;
 
-            this._init(x, y);
-        }
-
-        if (this.state.isOpened[y][x] || this.state.isFlagged[y][x]) {
-            return;
+            this._init(cx, cy);
         }
 
         const isOpened = this.state.isOpened.slice();
-        isOpened[y][x] = true;
+        const queue = [[cx, cy]];
+
+        while (queue.length) {
+            const [cx, cy] = queue.shift();
+
+            if (this.state.isOpened[cy][cx] || this.state.isFlagged[cy][cx]) {
+                continue;
+            }
+
+            isOpened[cy][cx] = true;
+
+            if (this.state.board[cy][cx] !== 0) {
+                continue;
+            }
+
+            for (let y = -1; y <= 1; y++) {
+                for (let x = -1; x <= 1; x++) {
+                    const ny = cy + y;
+                    const nx = cx + x;
+                    if (0 <= ny && ny < this.state.rows &&
+                        0 <= nx && nx < this.state.columns) {
+                        queue.push([nx, ny]);
+                    }
+                }
+            }
+        }
+
         this.setState({isOpened});
     };
 
-    handleRightClick = (x, y) => {
-        if (this.state.isOpened[y][x]) {
+    handleRightClick = (cx, cy) => {
+        if (this.state.isOpened[cy][cx]) {
             return;
         }
 
         const isFlagged = this.state.isFlagged.slice();
-        isFlagged[y][x] = !isFlagged[y][x];
+        isFlagged[cy][cx] = !isFlagged[cy][cx];
         this.setState({isFlagged});
     };
 
