@@ -12,6 +12,7 @@ export default class App extends React.Component {
 
         const rows = 9;
         const columns = 9;
+
         const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
         const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
         const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
@@ -20,6 +21,8 @@ export default class App extends React.Component {
             mineNumber: mineNumber,
             rows: rows,
             columns: columns,
+            remainingCells: rows * columns,
+            status: 'playing',
             board: board,
             isOpened: isOpened,
             isFlagged: isFlagged,
@@ -33,6 +36,8 @@ export default class App extends React.Component {
             this._init(cx, cy);
         }
 
+        let status = this.state.status;
+        let remainingCells = this.state.remainingCells;
         const isOpened = this.state.isOpened.slice();
         const queue = [[cx, cy]];
 
@@ -44,6 +49,17 @@ export default class App extends React.Component {
             }
 
             isOpened[cy][cx] = true;
+            remainingCells--;
+
+            if (this.state.board[cy][cx] === this.state.mineNumber) {
+                status = 'game over';
+                break;
+            }
+
+            if (remainingCells === this.mines) {
+                status = 'clear';
+                break;
+            }
 
             if (this.state.board[cy][cx] !== 0) {
                 continue;
@@ -61,7 +77,8 @@ export default class App extends React.Component {
             }
         }
 
-        this.setState({isOpened});
+        this.setState({status, remainingCells, isOpened});
+        this.checkGameStatus(status);
     };
 
     handleRightClick = (cx, cy) => {
@@ -106,6 +123,20 @@ export default class App extends React.Component {
 
         this.setState({board})
     };
+
+    checkGameStatus(status) {
+        if (status === 'game over') {
+            const isOpened = this.state.isOpened.slice();
+
+            for (let y = 0; y < this.state.rows; y++) {
+                for (let x = 0; x < this.state.columns; x++) {
+                    isOpened[y][x] = true;
+                }
+            }
+
+            this.setState({isOpened});
+        }
+    }
 
     render() {
         return (
