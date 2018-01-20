@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from './Board';
+import Difficulty from './Difficulty';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -27,6 +28,8 @@ export default class App extends React.Component {
             isOpened: isOpened,
             isFlagged: isFlagged,
         };
+
+        this.changeDifficulty = this.changeDifficulty.bind(this);
     }
 
     handleLeftClick = (cx, cy) => {
@@ -136,20 +139,43 @@ export default class App extends React.Component {
 
             this.setState({isOpened});
         }
-    }
+    };
+
+    changeDifficulty(difficulty) {
+        const [mines, rows, columns] = {
+            'easy': [10, 9, 9],
+            'normal': [40, 16, 16],
+            'hard': [99, 16, 30],
+        }[difficulty];
+
+        const remainingCells = rows * columns;
+        const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
+        const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
+        const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
+
+        this.mines = mines;
+        this.isFirstOpen = true;
+
+        this.setState({rows, columns, remainingCells, board, isOpened, isFlagged});
+    };
 
     render() {
         return (
-            <Board
-                mineNumber={this.state.mineNumber}
-                rows={this.state.rows}
-                columns={this.state.columns}
-                board={this.state.board}
-                isOpened={this.state.isOpened}
-                isFlagged={this.state.isFlagged}
-                onLeftClick={this.handleLeftClick}
-                onRightClick={this.handleRightClick}
-            />
+            <div>
+                <Difficulty
+                    onChange={this.changeDifficulty}
+                />
+                <Board
+                    mineNumber={this.state.mineNumber}
+                    rows={this.state.rows}
+                    columns={this.state.columns}
+                    board={this.state.board}
+                    isOpened={this.state.isOpened}
+                    isFlagged={this.state.isFlagged}
+                    onLeftClick={this.handleLeftClick}
+                    onRightClick={this.handleRightClick}
+                />
+            </div>
         );
     }
 }
