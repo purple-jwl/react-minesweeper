@@ -9,8 +9,8 @@ export default class App extends React.Component {
         const mineNumber = 1000000;
 
         this.isFirstOpen = true;
-        this.mines = 10;
 
+        const mines = 10;
         const rows = 9;
         const columns = 9;
 
@@ -20,9 +20,11 @@ export default class App extends React.Component {
 
         this.state = {
             mineNumber: mineNumber,
+            mines: mines,
             rows: rows,
             columns: columns,
             remainingCells: rows * columns,
+            flags: 0,
             status: 'playing',
             board: board,
             isOpened: isOpened,
@@ -59,7 +61,7 @@ export default class App extends React.Component {
                 break;
             }
 
-            if (remainingCells === this.mines) {
+            if (remainingCells === this.state.mines) {
                 status = 'clear';
                 break;
             }
@@ -91,13 +93,14 @@ export default class App extends React.Component {
 
         const isFlagged = this.state.isFlagged.slice();
         isFlagged[cy][cx] = !isFlagged[cy][cx];
-        this.setState({isFlagged});
+        const flags = this.state.flags + (isFlagged[cy][cx] ? 1 : -1);
+        this.setState({isFlagged, flags});
     };
 
     _init = (sx, sy) => {
         const board = this.state.board.slice();
 
-        for (let m = 0; m < this.mines; m++) {
+        for (let m = 0; m < this.state.mines; m++) {
             const my = Math.floor(Math.random() * this.state.rows);
             const mx = Math.floor(Math.random() * this.state.columns);
 
@@ -149,20 +152,24 @@ export default class App extends React.Component {
         }[difficulty];
 
         const remainingCells = rows * columns;
+        const flags = 0;
+        const status = 'playing';
         const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
         const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
         const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
 
-        this.mines = mines;
         this.isFirstOpen = true;
 
-        this.setState({rows, columns, remainingCells, board, isOpened, isFlagged});
+        this.setState({mines, rows, columns, remainingCells, flags, status, board, isOpened, isFlagged});
     };
 
     render() {
         return (
             <div>
                 <Difficulty
+                    mines={this.state.mines}
+                    flags={this.state.flags}
+                    status={this.state.status}
                     onChange={this.changeDifficulty}
                 />
                 <Board
