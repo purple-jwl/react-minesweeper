@@ -145,6 +145,9 @@ export default class App extends React.Component {
             }
 
             this.setState({isOpened});
+            this.stopTimer();
+        } else if (status == 'clear') {
+            this.stopTimer();
         }
     };
 
