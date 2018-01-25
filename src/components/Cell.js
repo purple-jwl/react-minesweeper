@@ -19,8 +19,8 @@ export default class Cell extends React.Component {
         const isFlagged = this.props.isFlagged[y][x];
 
         const style = {
-            height: '32px',
-            width: '32px',
+            height: '24px',
+            width: '24px',
             border: '1px solid black',
             margin: '2px',
             backgroundColor: isOpened ? 'white' : 'lightyellow',

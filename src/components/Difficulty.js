@@ -9,7 +9,7 @@ export default class Difficulty extends React.Component {
 
     render() {
         const style = {
-            padding: '5px',
+            margin: '5px',
         };
 
         return (
@@ -22,9 +22,9 @@ export default class Difficulty extends React.Component {
                         <option value="hard">Hard</option>
                     </select>
                 </span>
-                <span style={style} role="img" aria-label="Bomb"> 💣 : {this.props.mines}</span>
-                <span style={style} role="img" aria-label="Triangular Flag"> 🚩 : {this.props.flags}</span>
-                <span style={style} role="img" aria-label="Alarm Clock">⏰ : {this.props.seconds}</span>
+                <span style={style}><span role="img" aria-label="Bomb">💣</span> : {this.props.mines}</span>
+                <span style={style}><span role="img" aria-label="Triangular Flag">🚩</span> : {this.props.flags}</span>
+                <span style={style}><span role="img" aria-label="Alarm Clock">⏰</span> : {this.props.seconds}</span>
             </div>
         );
     }
