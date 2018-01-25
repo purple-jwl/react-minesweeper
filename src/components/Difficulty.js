@@ -22,9 +22,9 @@ export default class Difficulty extends React.Component {
                         <option value="hard">Hard</option>
                     </select>
                 </span>
-                <span> | </span>
                 <span style={style} role="img" aria-label="Bomb"> 💣 : {this.props.mines}</span>
                 <span style={style} role="img" aria-label="Triangular Flag"> 🚩 : {this.props.flags}</span>
+                <span style={style} role="img" aria-label="Alarm Clock">⏰ : {this.props.seconds}</span>
             </div>
         );
     }

@@ -26,17 +26,21 @@ export default class App extends React.Component {
             remainingCells: rows * columns,
             flags: 0,
             status: 'playing',
+            seconds: 0,
             board: board,
             isOpened: isOpened,
             isFlagged: isFlagged,
         };
 
         this.changeDifficulty = this.changeDifficulty.bind(this);
+        this.tick = this.tick.bind(this);
     }
 
     handleLeftClick = (cx, cy) => {
         if (this.isFirstOpen) {
             this.isFirstOpen = false;
+
+            this.startTimer();
 
             this._init(cx, cy);
         }
@@ -161,7 +165,26 @@ export default class App extends React.Component {
         this.isFirstOpen = true;
 
         this.setState({mines, rows, columns, remainingCells, flags, status, board, isOpened, isFlagged});
+
+        this.clearTimer();
     };
+
+    startTimer() {
+        this.interval = setInterval(this.tick, 1000);
+    }
+
+    clearTimer() {
+        clearInterval(this.interval);
+        this.setState({
+           seconds: 0,
+        });
+    }
+
+    tick() {
+        this.setState({
+           seconds: this.state.seconds + 1,
+        });
+    }
 
     render() {
         return (
@@ -170,6 +193,7 @@ export default class App extends React.Component {
                     mines={this.state.mines}
                     flags={this.state.flags}
                     status={this.state.status}
+                    seconds={this.state.seconds}
                     onChange={this.changeDifficulty}
                 />
                 <Board
