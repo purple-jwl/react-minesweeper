@@ -173,6 +173,10 @@ export default class App extends React.Component {
         this.interval = setInterval(this.tick, 1000);
     }
 
+    stopTimer() {
+        clearInterval(this.interval);
+    }
+
     clearTimer() {
         clearInterval(this.interval);
         this.setState({
