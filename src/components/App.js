@@ -25,7 +25,7 @@ export default class App extends React.Component {
             columns: columns,
             remainingCells: rows * columns,
             flags: 0,
-            status: 'playing',
+            status: 'ready',
             seconds: 0,
             board: board,
             isOpened: isOpened,
@@ -37,15 +37,17 @@ export default class App extends React.Component {
     }
 
     handleLeftClick = (cx, cy) => {
+        let status = this.state.status;
+
         if (this.isFirstOpen) {
             this.isFirstOpen = false;
+            status = 'playing';
 
             this.startTimer();
 
             this._init(cx, cy);
         }
 
-        let status = this.state.status;
         let remainingCells = this.state.remainingCells;
         const isOpened = this.state.isOpened.slice();
         const queue = [[cx, cy]];
@@ -131,7 +133,7 @@ export default class App extends React.Component {
             }
         }
 
-        this.setState({board})
+        this.setState({board});
     };
 
     checkGameStatus(status) {
@@ -160,7 +162,7 @@ export default class App extends React.Component {
 
         const remainingCells = rows * columns;
         const flags = 0;
-        const status = 'playing';
+        const status = 'ready';
         const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
         const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
         const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
