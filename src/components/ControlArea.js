@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default class Difficulty extends React.Component {
-
+export default class ControlArea extends React.Component {
     _handleOnChange = (e) => {
         e.preventDefault();
         this.props.onChange(document.getElementById('difficulty').value);

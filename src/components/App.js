@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from './Board';
-import Difficulty from './Difficulty';
+import ControlArea from './ControlArea';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -196,7 +196,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <Difficulty
+                <ControlArea
                     mines={this.state.mines}
                     flags={this.state.flags}
                     status={this.state.status}
