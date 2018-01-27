@@ -31,9 +31,6 @@ export default class App extends React.Component {
             isOpened: isOpened,
             isFlagged: isFlagged,
         };
-
-        this.changeDifficulty = this.changeDifficulty.bind(this);
-        this.tick = this.tick.bind(this);
     }
 
     handleLeftClick = (cx, cy) => {
@@ -136,7 +133,7 @@ export default class App extends React.Component {
         this.setState({board});
     };
 
-    checkGameStatus(status) {
+    checkGameStatus = (status) => {
         if (status === 'game over') {
             const isOpened = this.state.isOpened.slice();
 
@@ -153,7 +150,7 @@ export default class App extends React.Component {
         }
     };
 
-    changeDifficulty(difficulty) {
+    changeDifficulty = (difficulty) => {
         const [mines, rows, columns] = {
             'easy': [10, 9, 9],
             'normal': [40, 16, 16],
@@ -174,26 +171,26 @@ export default class App extends React.Component {
         this.clearTimer();
     };
 
-    startTimer() {
+    startTimer = () => {
         this.interval = setInterval(this.tick, 1000);
-    }
+    };
 
-    stopTimer() {
+    stopTimer = () => {
         clearInterval(this.interval);
-    }
+    };
 
-    clearTimer() {
+    clearTimer = () => {
         clearInterval(this.interval);
         this.setState({
            seconds: 0,
         });
-    }
+    };
 
-    tick() {
+    tick = () => {
         this.setState({
            seconds: this.state.seconds + 1,
         });
-    }
+    };
 
     render() {
         return (
