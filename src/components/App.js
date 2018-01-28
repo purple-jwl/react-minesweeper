@@ -6,31 +6,8 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
 
-        const mineNumber = 1000000;
-
         this.isFirstOpen = true;
-
-        const mines = 10;
-        const rows = 9;
-        const columns = 9;
-
-        const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
-        const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
-        const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
-
-        this.state = {
-            mineNumber: mineNumber,
-            mines: mines,
-            rows: rows,
-            columns: columns,
-            remainingCells: rows * columns,
-            flags: 0,
-            status: 'ready',
-            seconds: 0,
-            board: board,
-            isOpened: isOpened,
-            isFlagged: isFlagged,
-        };
+        this.state = this.getConfig('easy');
     }
 
     handleLeftClick = (cx, cy) => {
@@ -151,24 +128,37 @@ export default class App extends React.Component {
     };
 
     changeDifficulty = (difficulty) => {
+        this.setState(this.getConfig(difficulty));
+
+        this.clearTimer();
+    };
+
+    getConfig = (difficulty) => {
+        const mineNumber = 1000000;
+
         const [mines, rows, columns] = {
             'easy': [10, 9, 9],
             'normal': [40, 16, 16],
             'hard': [99, 16, 30],
         }[difficulty];
 
-        const remainingCells = rows * columns;
-        const flags = 0;
-        const status = 'ready';
         const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
         const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
         const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
 
-        this.isFirstOpen = true;
-
-        this.setState({mines, rows, columns, remainingCells, flags, status, board, isOpened, isFlagged});
-
-        this.clearTimer();
+        return {
+            mineNumber: mineNumber,
+            mines: mines,
+            rows: rows,
+            columns: columns,
+            remainingCells: rows * columns,
+            flags: 0,
+            seconds: 0,
+            status: 'ready',
+            board: board,
+            isOpened: isOpened,
+            isFlagged: isFlagged,
+        }
     };
 
     startTimer = () => {
