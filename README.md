@@ -1,2 +1,3 @@
-# マインスイーパー（仮）
-開発中...
+# マインスイーパー
+
+https://purple-jwl.github.io/react-minesweeper/
