@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import App from './components/App.js';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createApp } from 'redux';
+import App from './components/App';
 
-ReactDom.render(
+render(
     <App />,
     document.getElementById('root')
 );
