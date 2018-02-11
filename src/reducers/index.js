@@ -1,10 +1,12 @@
-import { combineReducers } from 'redux';
-import game from './game';
-import timer from './timer';
+import { getConfig } from '../config';
 
-const reducers = combineReducers({
-    game,
-    timer,
-});
+const reducers = (state = [], action) => {
+    switch (action.type) {
+        case 'CHANGE_DIFFICULTY':
+            return Object.assign({}, state, getConfig(action.difficulty));
+        default:
+            return state;
+    }
+};
 
 export default reducers;
