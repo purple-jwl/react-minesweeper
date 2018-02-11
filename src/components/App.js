@@ -134,6 +134,8 @@ export default class App extends React.Component {
     };
 
     getConfig = (difficulty) => {
+        this.isFirstOpen = true;
+
         const mineNumber = 1000000;
 
         const [mines, rows, columns] = {
