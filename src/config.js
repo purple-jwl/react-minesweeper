@@ -1,4 +1,4 @@
-export const getConfig = (difficulty = 'easy') => {
+export const getConfig = (difficulty) => {
     const mineNumber = 1000000;
 
     const [mines, rows, columns] = {
@@ -26,3 +26,5 @@ export const getConfig = (difficulty = 'easy') => {
         isFirstOpen: true,
     }
 };
+
+export const getInitConfig = () => getConfig('easy');
