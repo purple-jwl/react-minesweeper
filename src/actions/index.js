@@ -1,7 +1,9 @@
+import { getInitConfig } from '../config';
+
 export const changeDifficulty = (difficulty) => {
     return {
         type: 'CHANGE_DIFFICULTY',
-        difficulty,
+        initState: getInitConfig(difficulty)
     };
 };
 
