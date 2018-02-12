@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 import Cell from '../components/Cell';
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,4 +14,21 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps)(Cell);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const y = ownProps.y;
+    const x = ownProps.x;
+
+    return {
+        openCell: (e) => {
+            e.preventDefault();
+            dispatch(actions.openCell({x, y}));
+        },
+        toggleFlag: (e) => {
+            e.preventDefault();
+            dispatch(actions.toggleFlag({x, y}));
+        }
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cell);

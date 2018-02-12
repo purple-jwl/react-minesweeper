@@ -9,13 +9,13 @@ const style = {
     textAlign: 'center',
 };
 
-const Cell = ({board, isFlagged, isOpened, mineNumber}) => (
+const Cell = ({board, isFlagged, isOpened, mineNumber, openCell, toggleFlag}) => (
     <div
         style={Object.assign({}, style, {
             backgroundColor: isOpened ? 'white' : 'lightyellow'
         })}
-        //onClick={this._handleLeftClick}
-        //onContextMenu={this._handleRightClick}
+        onClick={openCell}
+        onContextMenu={toggleFlag}
     >
         {isFlagged ? '🚩' : (
             !isOpened ? '' : (
