@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeDifficulty } from '../actions';
+import * as actions from '../actions';
 import ControlArea from '../components/ControlArea';
 
 const mapStateToProps = (state) => ({
@@ -10,10 +10,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onChangeDifficulty: (e) => {
+    changeDifficulty: (e) => {
         e.preventDefault();
         const difficulty = document.getElementById('difficulty').value;
-        dispatch(changeDifficulty(difficulty));
+        dispatch(actions.changeDifficulty(difficulty));
     }
 });
 

@@ -4,11 +4,11 @@ const style = {
     margin: '5px',
 };
 
-const ControlArea = ({ status, mines, flags, seconds, onChangeDifficulty }) => {
+const ControlArea = ({ status, mines, flags, seconds, changeDifficulty }) => {
     return (
         <div>
             <span style={style}> [{status}]</span>
-            <span style={style} onChange={onChangeDifficulty}>
+            <span style={style} onChange={changeDifficulty}>
                 <select id="difficulty">
                     <option value="easy">Easy</option>
                     <option value="normal">Normal</option>
