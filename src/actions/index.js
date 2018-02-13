@@ -8,9 +8,11 @@ export const changeDifficulty = (difficulty) => {
 };
 
 export const toggleFlag = ({x, y}) => {
-    return {
-        type: 'TOGGLE_FLAG',
-    };
+    return (dispatch, getState) => {
+        const currentState = getState();
+        const nextState = _toggleFlag(x, y, currentState);
+        dispatch(setState(nextState));
+    }
 };
 
 export const openCell = ({x, y}) => {
@@ -114,4 +116,15 @@ const _generateBoard = (sx, sy, state) => {
     }
 
     return {board};
+};
+
+const _toggleFlag = (cx, cy, state) => {
+    if (state.isOpened[cy][cx]) {
+        return state;
+    }
+
+    state.isFlagged[cy][cx] = !state.isFlagged[cy][cx];
+    state.flags = state.flags + (state.isFlagged[cy][cx] ? 1 : -1);
+
+    return state;
 };
