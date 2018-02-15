@@ -2,10 +2,13 @@ import * as timer from './timer.js';
 import { getInitConfig } from '../config';
 
 export const changeDifficulty = (difficulty) => {
-    return {
-        type: 'CHANGE_DIFFICULTY',
-        initState: getInitConfig(difficulty)
-    };
+    return (dispatch) => {
+        dispatch(timer.clearTimer());
+        dispatch({
+            type: 'CHANGE_DIFFICULTY',
+            initState: getInitConfig(difficulty)
+        });
+    }
 };
 
 export const toggleFlag = ({x, y}) => {
@@ -29,6 +32,22 @@ export const openCell = ({x, y}) => {
         }
 
         Object.assign(nextState, _openCell(x, y, getState()));
+
+        switch (nextState.status) {
+            case 'game_over':
+                for (let y = 0; y < nextState.rows; y++) {
+                    for (let x = 0; x < nextState.columns; x++) {
+                        nextState.isOpened[y][x] = true;
+                    }
+                }
+                timer.stopTimer();
+                break;
+            case 'clear':
+                timer.stopTimer();
+                break;
+            default:
+                break;
+        }
 
         dispatch(setState(nextState));
     }
@@ -57,7 +76,7 @@ const _openCell = (cx, cy, state) => {
         state.remainingCells--;
 
         if (state.board[cy][cx] === state.mineNumber) {
-            state.status = 'game over';
+            state.status = 'game_over';
             break;
         }
 
