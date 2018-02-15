@@ -9,16 +9,14 @@ export const changeDifficulty = (difficulty) => {
 
 export const toggleFlag = ({x, y}) => {
     return (dispatch, getState) => {
-        const currentState = getState();
-        const nextState = _toggleFlag(x, y, currentState);
+        const nextState = _toggleFlag(x, y, getState());
         dispatch(setState(nextState));
     }
 };
 
 export const openCell = ({x, y}) => {
     return (dispatch, getState) => {
-        const currentState = getState();
-        const nextState = _openCell(x, y, currentState);
+        const nextState = _openCell(x, y, getState());
         dispatch(setState(nextState));
     }
 };
