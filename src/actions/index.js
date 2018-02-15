@@ -1,3 +1,4 @@
+import * as timer from './timer.js';
 import { getInitConfig } from '../config';
 
 export const changeDifficulty = (difficulty) => {
@@ -16,7 +17,19 @@ export const toggleFlag = ({x, y}) => {
 
 export const openCell = ({x, y}) => {
     return (dispatch, getState) => {
-        const nextState = _openCell(x, y, getState());
+        const nextState = getState();
+
+        if (nextState.isFirstOpen) {
+            Object.assign(nextState, {
+                isFirstOpen: false,
+                status: 'playing',
+                board: _generateBoard(x, y, nextState),
+            });
+            dispatch(timer.startTimer());
+        }
+
+        Object.assign(nextState, _openCell(x, y, getState()));
+
         dispatch(setState(nextState));
     }
 };
@@ -29,15 +42,6 @@ export const setState = (state) => {
 };
 
 const _openCell = (cx, cy, state) => {
-    if (state.isFirstOpen) {
-        state.isFirstOpen = false;
-        state.status = 'playing';
-
-        // this.startTimer();
-
-        Object.assign(state, _generateBoard(cx, cy, state));
-    }
-
     // let remainingCells = state.remainingCells;
     // const isOpened = state.isOpened.slice();
     const queue = [[cx, cy]];
@@ -113,7 +117,7 @@ const _generateBoard = (sx, sy, state) => {
         }
     }
 
-    return {board};
+    return board;
 };
 
 const _toggleFlag = (cx, cy, state) => {
