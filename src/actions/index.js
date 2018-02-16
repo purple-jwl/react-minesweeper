@@ -61,8 +61,6 @@ export const setState = (state) => {
 };
 
 const _openCell = (cx, cy, state) => {
-    // let remainingCells = state.remainingCells;
-    // const isOpened = state.isOpened.slice();
     const queue = [[cx, cy]];
 
     while (queue.length) {
@@ -102,8 +100,6 @@ const _openCell = (cx, cy, state) => {
     }
 
     return state;
-
-    //this.checkGameStatus(status);
 };
 
 const _generateBoard = (sx, sy, state) => {
