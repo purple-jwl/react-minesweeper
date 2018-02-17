@@ -1,19 +1,22 @@
 import React from 'react';
 
 const style = {
-    height: '24px',
-    width: '24px',
-    border: '1px solid black',
-    margin: '2px',
-//    backgroundColor: isOpened ? 'white' : 'lightyellow',
-    textAlign: 'center',
+    base: {
+        height: '24px',
+        width: '24px',
+        border: '1px solid black',
+        margin: '2px',
+        backgroundColor: 'lightyellow',
+        textAlign: 'center',
+    },
+    opened: {
+        backgroundColor: 'white',
+    }
 };
 
 const Cell = ({board, isFlagged, isOpened, mineNumber, openCell, toggleFlag}) => (
     <div
-        style={Object.assign({}, style, {
-            backgroundColor: isOpened ? 'white' : 'lightyellow'
-        })}
+        style={Object.assign({}, style.base, isOpened ? style.opened : {})}
         onClick={openCell}
         onContextMenu={toggleFlag}
     >
