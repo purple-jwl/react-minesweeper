@@ -1,51 +1,37 @@
 import React from 'react';
-import Cell from './Cell';
+import Cell from '../containers/Cell';
 
-export default class Board extends React.Component {
-    _renderRow(i) {
-        const cells = [];
+const style = {
+    display: 'flex',
+    flexDirection: 'row',
+};
 
-        for (let j = 0; j < this.props.columns; j++) {
-            cells.push(
+const Board = ({ rows, columns }) => {
+    const rs = [];
+
+    for (let i = 0; i < rows; i++) {
+        const cs = [];
+        for (let j = 0; j < columns; j++) {
+            cs.push(
                 <Cell
                     key={j}
                     y={i}
                     x={j}
-                    mineNumber={this.props.mineNumber}
-                    rows={this.props.rows}
-                    columns={this.props.columns}
-                    board={this.props.board}
-                    isOpened={this.props.isOpened}
-                    isFlagged={this.props.isFlagged}
-                    onLeftClick={this.props.onLeftClick}
-                    onRightClick={this.props.onRightClick}
                 />
             );
         }
-
-        const style = {
-            display: 'flex',
-            flexDirection: 'row',
-        };
-
-        return (
+        rs.push(
             <div key={i} style={style}>
-                {cells}
+                {cs}
             </div>
         );
     }
 
-    render() {
-        const rows = [];
+    return (
+        <div>
+            {rs}
+        </div>
+    );
+};
 
-        for (let i = 0; i < this.props.rows; i++) {
-            rows.push(this._renderRow(i));
-        }
-
-        return (
-            <div>
-                {rows}
-            </div>
-        );
-    }
-}
+export default Board;

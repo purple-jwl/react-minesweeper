@@ -1,8 +1,21 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import App from './components/App.js';
+import { render } from 'react-dom';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import reducers from './reducers';
+import App from './components/App';
+import { getInitConfig } from './config';
 
-ReactDom.render(
-    <App />,
+let store = createStore(
+    reducers,
+    getInitConfig(),
+    applyMiddleware(thunk)
+);
+
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );
