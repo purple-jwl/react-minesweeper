@@ -1,28 +1,41 @@
+const MINE_NUMBER = 1000000;
+
+const config = {
+    easy: {
+        mines:  10,
+        rows:    9,
+        columns: 9,
+    },
+    normal: {
+        mines:   40,
+        rows:    16,
+        columns: 16,
+    },
+    hard: {
+        mines:   99,
+        rows:    16,
+        columns: 30,
+    },
+};
+
 export const getInitConfig = (difficulty = 'easy') => {
-    const mineNumber = 1000000;
-
-    const [mines, rows, columns] = {
-        'easy': [10, 9, 9],
-        'normal': [40, 16, 16],
-        'hard': [99, 16, 30],
-    }[difficulty];
-
+    const {mines, rows, columns} = config[difficulty];
     const board = Array.from(new Array(rows), () => (new Array(columns).fill(0)));
     const isOpened = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
     const isFlagged = Array.from(new Array(rows), () => (new Array(columns).fill(false)));
 
     return {
-        mineNumber: mineNumber,
+        mineNumber: MINE_NUMBER,
         mines: mines,
         rows: rows,
         columns: columns,
+        board: board,
+        isOpened: isOpened,
+        isFlagged: isFlagged,
         remainingCells: rows * columns,
         flags: 0,
         seconds: 0,
         status: 'ready',
-        board: board,
-        isOpened: isOpened,
-        isFlagged: isFlagged,
         isFirstOpen: true,
     }
 };

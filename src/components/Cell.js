@@ -14,7 +14,7 @@ const style = {
     }
 };
 
-const Cell = ({board, isFlagged, isOpened, mineNumber, openCell, toggleFlag}) => (
+const Cell = ({ board, isFlagged, isOpened, mineNumber, openCell, toggleFlag }) => (
     <div
         style={Object.assign({}, style.base, isOpened ? style.opened : {})}
         onClick={openCell}

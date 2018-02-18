@@ -7,12 +7,12 @@ const style = {
 };
 
 const Board = ({ rows, columns }) => {
-    const rs = [];
+    const board = [];
 
     for (let i = 0; i < rows; i++) {
-        const cs = [];
+        const cells = [];
         for (let j = 0; j < columns; j++) {
-            cs.push(
+            cells.push(
                 <Cell
                     key={j}
                     y={i}
@@ -20,16 +20,16 @@ const Board = ({ rows, columns }) => {
                 />
             );
         }
-        rs.push(
+        board.push(
             <div key={i} style={style}>
-                {cs}
+                {cells}
             </div>
         );
     }
 
     return (
         <div>
-            {rs}
+            {board}
         </div>
     );
 };
