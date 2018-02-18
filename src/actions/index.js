@@ -109,7 +109,9 @@ const _generateBoard = (sx, sy, state) => {
         const my = Math.floor(Math.random() * state.rows);
         const mx = Math.floor(Math.random() * state.columns);
 
-        if ((mx === sx && my === sy) || state.board[my][mx] === state.mineNumber) {
+        if ((sy - 1 <= my && my <= sy + 1 && sx - 1 <= mx && mx <= sx + 1) ||
+            state.board[my][mx] === state.mineNumber
+        ) {
             m--;
             continue;
         }
