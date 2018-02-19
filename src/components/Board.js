@@ -2,8 +2,14 @@ import React from 'react';
 import Cell from '../containers/Cell';
 
 const style = {
-    display: 'flex',
-    flexDirection: 'row',
+    board: {
+        margin: '10px',
+    },
+    cells: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+    }
 };
 
 const Board = ({ rows, columns }) => {
@@ -21,14 +27,14 @@ const Board = ({ rows, columns }) => {
             );
         }
         board.push(
-            <div key={i} style={style}>
+            <div key={i} style={style.cells}>
                 {cells}
             </div>
         );
     }
 
     return (
-        <div>
+        <div style={style.board}>
             {board}
         </div>
     );
