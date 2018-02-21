@@ -16,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "format": "prettier --write --single-quote --trailing-comma all src/**/*.js"
   },
   "devDependencies": {
     "eslint": "^4.18.0",
