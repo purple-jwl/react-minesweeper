@@ -1,23 +1,23 @@
 let interval;
 
 export const startTimer = () => {
-    return (dispatch) => {
-        clearInterval(interval);
-        interval = setInterval(() => dispatch(tick()), 1000);
-    }
+  return dispatch => {
+    clearInterval(interval);
+    interval = setInterval(() => dispatch(tick()), 1000);
+  };
 };
 
 export const stopTimer = () => {
-    clearInterval(interval);
+  clearInterval(interval);
 };
 
 export const clearTimer = () => {
-    clearInterval(interval);
-    return {
-        type: 'CLEAR_TIMER',
-    };
+  clearInterval(interval);
+  return {
+    type: 'CLEAR_TIMER',
+  };
 };
 
 const tick = () => ({
-    type: 'TICK_TIMER',
+  type: 'TICK_TIMER',
 });
