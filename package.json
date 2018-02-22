@@ -4,6 +4,7 @@
   "homepage": "https://purple-jwl.github.io/react-minesweeper/",
   "private": true,
   "dependencies": {
+    "js-cookie": "^2.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
