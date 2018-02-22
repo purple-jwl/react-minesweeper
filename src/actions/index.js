@@ -1,7 +1,10 @@
 import * as timer from './timer.js';
 import { getInitConfig } from '../config';
+import Cookies from 'js-cookie';
 
 export const changeDifficulty = difficulty => {
+  Cookies.set('difficulty', difficulty);
+
   return dispatch => {
     dispatch(timer.clearTimer());
     dispatch({

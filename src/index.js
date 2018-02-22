@@ -6,10 +6,11 @@ import { applyMiddleware, createStore } from 'redux';
 import reducers from './reducers';
 import App from './components/App';
 import { getInitConfig } from './config';
+import Cookies from 'js-cookie';
 
 let store = createStore(
     reducers,
-    getInitConfig(),
+    getInitConfig(Cookies.get('difficulty')),
     applyMiddleware(thunk)
 );
 
