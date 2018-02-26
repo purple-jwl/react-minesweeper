@@ -6,7 +6,7 @@ const style = {
     width: '24px',
     border: '1px solid black',
     margin: '2px',
-    backgroundColor: 'lightyellow',
+    backgroundColor: '#C3C3C3',
     textAlign: 'center',
   },
   opened: {
