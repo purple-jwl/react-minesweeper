@@ -9,14 +9,14 @@ import { getInitConfig } from './config';
 import Cookies from 'js-cookie';
 
 let store = createStore(
-    reducers,
-    getInitConfig(Cookies.get('difficulty')),
-    applyMiddleware(thunk)
+  reducers,
+  getInitConfig(Cookies.get('difficulty')),
+  applyMiddleware(thunk),
 );
 
 render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
 );
