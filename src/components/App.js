@@ -5,7 +5,6 @@ import ControlArea from '../containers/ControlArea';
 const style = {
   padding: '10px',
   textAlign: 'center',
-  backgroundColor: '#ffeefe',
 };
 
 const App = () => (
