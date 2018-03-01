@@ -12,8 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeDifficulty: e => {
     e.preventDefault();
-    const difficulty = document.getElementById('difficulty').value;
-    dispatch(actions.changeDifficulty(difficulty));
+    dispatch(actions.changeDifficulty(e.target.value));
   },
 });
 

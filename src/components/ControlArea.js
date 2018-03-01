@@ -16,7 +16,7 @@ const ControlArea = ({ status, mines, flags, seconds, changeDifficulty }) => {
           : status === 'playing' ? '🤔' : status === 'clear' ? '🤗' : '😱'}
       </span>
       <span style={style}>
-        <select id="difficulty" value={difficulty} onChange={changeDifficulty}>
+        <select value={difficulty} onChange={changeDifficulty}>
           <option value="easy">Easy</option>
           <option value="normal">Normal</option>
           <option value="hard">Hard</option>
