@@ -8,7 +8,7 @@ import App from './components/App';
 import { getInitConfig } from './config';
 import Cookies from 'js-cookie';
 
-let store = createStore(
+const store = createStore(
   reducers,
   getInitConfig(Cookies.get('difficulty')),
   applyMiddleware(thunk),
