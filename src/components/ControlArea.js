@@ -11,6 +11,11 @@ const ControlArea = ({ status, mines, flags, seconds, changeDifficulty }) => {
   return (
     <div>
       <span style={style}>
+        <a href="https://github.com/purple-jwl/react-minesweeper" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-github"></i>GitHub
+        </a>
+      </span>
+      <span style={style}>
         {status === 'ready'
           ? '😪'
           : status === 'playing' ? '🤔' : status === 'clear' ? '🤗' : '😱'}
