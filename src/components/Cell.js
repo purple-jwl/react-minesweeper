@@ -4,8 +4,8 @@ const style = {
   base: {
     height: '24px',
     width: '24px',
-    border: '1px solid black',
     margin: '2px',
+    border: '1px solid #C3C3C3',
     backgroundColor: '#C3C3C3',
     textAlign: 'center',
   },
