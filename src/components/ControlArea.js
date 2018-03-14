@@ -45,6 +45,15 @@ const ControlArea = ({ status, mines, flags, seconds, changeDifficulty }) => {
         </span>{' '}
         : {seconds}
       </span>
+      {(() => {
+        if (status === 'game_over') {
+          return (
+            <span style={style}>
+              <button>Retry</button>
+            </span>
+          );
+        }
+      })()}
     </div>
   );
 };
