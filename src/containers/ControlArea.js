@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   },
   retryGame: e => {
     dispatch(actions.retryGame());
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControlArea);
