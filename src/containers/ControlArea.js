@@ -14,6 +14,9 @@ const mapDispatchToProps = dispatch => ({
     e.preventDefault();
     dispatch(actions.changeDifficulty(e.target.value));
   },
+  retryGame: e => {
+    dispatch(actions.retryGame());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControlArea);

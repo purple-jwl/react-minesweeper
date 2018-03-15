@@ -5,7 +5,7 @@ const style = {
   margin: '5px',
 };
 
-const ControlArea = ({ status, mines, flags, seconds, changeDifficulty }) => {
+const ControlArea = ({ status, mines, flags, seconds, changeDifficulty, retryGame }) => {
   const difficulty = Cookies.get('difficulty');
 
   return (
@@ -49,7 +49,7 @@ const ControlArea = ({ status, mines, flags, seconds, changeDifficulty }) => {
         if (status === 'game_over') {
           return (
             <span style={style}>
-              <button>Retry</button>
+              <button onClick={retryGame}>Retry</button>
             </span>
           );
         }

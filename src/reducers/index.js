@@ -2,6 +2,8 @@ const reducers = (state = [], action) => {
   switch (action.type) {
     case 'CHANGE_DIFFICULTY':
       return Object.assign({}, state, action.initState);
+    case 'RETRY_GAME':
+      return Object.assign({}, state, action.initState);
     case 'SET_STATE':
       return Object.assign({}, state, action.state);
     case 'CLEAR_TIMER':

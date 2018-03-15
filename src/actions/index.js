@@ -14,6 +14,14 @@ export const changeDifficulty = difficulty => {
   };
 };
 
+export const retryGame = () => dispatch => {
+  dispatch(timer.clearTimer());
+  dispatch({
+    type: 'RETRY_GAME',
+    initState: getInitConfig(Cookies.get('difficulty')),
+  });
+};
+
 export const toggleFlag = ({ x, y }) => {
   return (dispatch, getState) => {
     const nextState = _toggleFlag(x, y, getState());
