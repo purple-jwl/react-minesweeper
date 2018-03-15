@@ -8,6 +8,8 @@ import App from './components/App';
 import { getInitConfig } from './config';
 import Cookies from 'js-cookie';
 
+Cookies.get('difficulty') || Cookies.set('difficulty', 'easy');
+
 const store = createStore(
   reducers,
   getInitConfig(Cookies.get('difficulty')),
